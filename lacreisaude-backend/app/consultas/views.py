@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Consulta
+from .serializers import ConsultaSerializer
 
-# Create your views here.
+class ConsultaViewSet(viewsets.ModelViewSet):
+    queryset = Consulta.objects.all()
+    serializer_class = ConsultaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['profissional']
+

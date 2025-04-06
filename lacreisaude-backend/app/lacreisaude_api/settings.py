@@ -40,7 +40,17 @@ INSTALLED_APPS = [
 
     #Third-party applications
     'rest_framework',
+    'django_filters',
+
+    # outras apps do Django e suas apps locais
+    'consultas',
+    'profissionais',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,16 +84,16 @@ WSGI_APPLICATION = 'lacreisaude_api.wsgi.application'
 
 # Database
 
-import os
+from decouple import config
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DATABASE_NAME"),
-        'USER': os.environ.get("DATABASE_USER"),
-        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
-        'HOST': os.environ.get("DATABASE_HOST"),
-        'PORT': os.environ.get("DATABASE_PORT"),
+        'NAME': config("DATABASE_NAME"),
+        'USER': config("DATABASE_USER"),
+        'PASSWORD': config("DATABASE_PASSWORD"),
+        'HOST': config("DATABASE_HOST", default="localhost"),
+        'PORT': config("DATABASE_PORT", default="5432"),
     }
 }
 

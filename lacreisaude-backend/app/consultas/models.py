@@ -1,14 +1,5 @@
 from django.db import models
-
-
-class Profissional(models.Model):
-    nome_social = models.CharField(max_length=255)
-    profissao = models.CharField(max_length=255)
-    endereco = models.CharField(max_length=255)
-    contato = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f"{self.nome_social} ({self.profissao})"
+from profissionais.models import Profissional
 
 
 class Consulta(models.Model):
@@ -17,4 +8,5 @@ class Consulta(models.Model):
 
     def __str__(self):
         return f"Consulta com {self.profissional.nome_social} em {self.data}"
+
 

@@ -129,6 +129,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+ALLOWED_HOSTS = ['52.67.247.40']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
